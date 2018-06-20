@@ -1,0 +1,51 @@
+<html lang="en">
+  <head>
+    <title>Twitter Application</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <header>
+          <h1 align="center"><a href="/">Twitter App</a></h1>
+          <p> <form method="post" align="center">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="btn btn-success" value="Submit" />
+              </form>
+          </p>
+        </header>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="jumbotron">
+        <table>
+          {% if code %}
+            <tr>
+              <th class="text-center">Last 10 Tweets from the {{ username }}</th>
+            </tr>
+          {% else %}
+            <tr>
+              <th class="text-center">No Tweets..!</th>
+            </tr>
+          {% endif %}
+          {% for tweet in tweets %}
+            <tr>
+              <td>
+                {% if code %}
+                  * )
+                {% endif %}
+                 {{ tweet }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
