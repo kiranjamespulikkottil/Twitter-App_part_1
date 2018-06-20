@@ -25,7 +25,7 @@ SECRET_KEY = 'xq$qc2sx2u02f*3v=+j5$t=p3!3n-@yd-9fx4jvcghzjo%exgd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [https://kiranjames.pythonanywhere.com/]
+ALLOWED_HOSTS = ['kiranjames.pythonanywhere.com']
 
 
 # Application definition
