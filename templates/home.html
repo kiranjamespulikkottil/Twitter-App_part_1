@@ -15,37 +15,49 @@
           <p> <form method="post" align="center">
                 {% csrf_token %}
                 {{ form }}
-                <input type="submit" class="btn btn-success" value="Submit" />
+                <input type="button" onclick="test()" class="btn btn-success" value="Submit" />
               </form>
           </p>
         </header>
       </div>
     </div>
 
-
     <div class="container">
       <div class="jumbotron">
-        <table>
-          {% if code %}
-            <tr>
-              <th class="text-center">Last 10 Tweets from the {{ username }}</th>
-            </tr>
-          {% else %}
-            <tr>
-              <th class="text-center">No Tweets..!</th>
-            </tr>
-          {% endif %}
-          {% for tweet in tweets %}
-            <tr>
-              <td>
-                {% if code %}
-                  * )
-                {% endif %}
-                 {{ tweet }}</td>
-            </tr>
-          {% endfor %}
+        <table id="table-id">
+
+
         </table>
       </div>
     </div>
   </body>
+
+      <script>
+      function test() {
+          var value = $('#id_username').val();
+          var xhttp = new XMLHttpRequest();
+
+    $.ajax({
+
+        url : "/",
+        type : "GET",
+        data : {username:value},
+        success : function(response){
+          var tweets = $.parseJSON(response)['tweets']
+          $('#table-id').append('<tr><th class="text-center">Last 10 Tweets from the '+value+' </th></tr>');
+
+          for(i=0;i<tweets.length;i++){
+            $('#table-id').append('<tr><td> *) '+tweets[i]+'</td></tr>');
+          }
+
+          $('#table-id').append('<tr><td class="text-center">........................................</td></tr>')
+
+
+        }
+
+      });
+
+
+    }
+      </script>
 </html>
